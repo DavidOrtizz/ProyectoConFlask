@@ -17,7 +17,7 @@ def listaOperarios():
 
 @app.route('/operario', methods=['POST'])
 def crearOperario():
-    Operario.crearOperario("Pablo","Calle2","Usuario","1")
+    Operario.crearOperario("Pablo","Calle2","Usuario",1)
     return "Ok"
 
 """ 
