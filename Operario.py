@@ -1,17 +1,25 @@
 import sqlite3
 
-con = sqlite3.connect("funkos.db")
-cur = con.cursor()
+def listaOperarios():
+    
+    con = sqlite3.connect("funkos.db")
+    cur = con.cursor()
 
-# Ejecutar la consulta
-cur.execute("SELECT * FROM OPERARIO WHERE Rol = 'Usuario'")
+    cur.execute("SELECT * FROM OPERARIO WHERE Rol = 'Usuario'")
 
-# Obtener todos los resultados
-resultados = cur.fetchall()
+    resultados = cur.fetchall()
 
-# Imprimir los resultados
-for resultado in resultados:
-    print(resultado)
+    con.close()
 
-# Cerrar la conexión
-con.close()
+    return resultados;
+
+def crearOperario(Nombre, Direccion, Rol, SedeID):
+    
+    con = sqlite3.connect("funkos.db")
+    cur = con.cursor()
+
+    cur.execute("INSERT INTO OPERARIO (Nombre, Direccion, Rol, SedeID) VALUES (?,?,?,?)", Nombre, Direccion, Rol, SedeID)
+
+    con.commit()
+
+    con.close()
