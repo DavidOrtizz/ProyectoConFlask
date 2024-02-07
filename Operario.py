@@ -23,3 +23,16 @@ def crearOperario(Nombre, Direccion, Rol, SedeID):
     con.commit()
 
     con.close()
+
+def operarioDetalle(OperarioID):
+    
+    con = sqlite3.connect("funkos.db")
+    cur = con.cursor()
+
+    cur.execute("SELECT * FROM OPERARIO WHERE OperarioID = ?", str(OperarioID))
+
+    resultados = cur.fetchall()
+
+    con.close()
+
+    return resultados;

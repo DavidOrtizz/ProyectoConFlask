@@ -1,5 +1,13 @@
-from flask import Flask
+from flask import Flask, request
+import sys
+
 import Operario
+
+log_file = open('log.txt', 'w')
+
+print("Escribiendo resultados en log.txt")
+sys.stdout = log_file
+sys.stderr = log_file
 
 app = Flask(__name__)
 
@@ -17,14 +25,28 @@ def listaOperarios():
 
 @app.route('/operario', methods=['POST'])
 def crearOperario():
-    Operario.crearOperario("Pablo","Calle2","Usuario",1)
-    return "Ok"
+
+    datos_json = request.json
+    Nombre = datos_json['Nombre']
+    Direccion = datos_json['Direccion']
+    Rol = datos_json['Rol']
+    SedeId = datos_json['SedeID']
+
+    return Operario.crearOperario(Nombre,Direccion,Rol,SedeId)
+
+@app.route('/operario/<int:OperarioID>')
+def operarioDetalle(OperarioID):
+    return Operario.operarioDetalle(OperarioID)
 
 """ 
-@app.route('/operario/<OperarioID>')
-def operarioDetalle():
+JSON:
 
-    return "<p>Hello, World!</p>"
+{
+    "Nombre": "Pablo",
+    "Direccion": "Calle 2",
+    "Rol": "Usuario",
+    "SedeID": 1
+}
 
 @app.route('/operario/<OperarioID>', methods=['PUT'])
 def modificaroOperario():
