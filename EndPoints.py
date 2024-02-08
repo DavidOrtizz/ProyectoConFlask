@@ -70,12 +70,12 @@ def mostrarProductos():
 def mostrarProducto(productoID):
   return Producto.mostrarUnProducto(productoID)
 
-@app.route("/modificarProducto", methods=['POST'])
+@app.route("/modificarProducto/<productoID>", methods=['POST'])
 def modificarProducto(productoID, nuevo_nombre, nuevo_precio, nueva_descripcion, nuevo_stock):
     Producto.modificarProducto(productoID, nuevo_nombre, nuevo_precio, nueva_descripcion, nuevo_stock)
     return "Producto modificado"
 
-@app.route("/eliminarProducto", methods=['POST'])
+@app.route("/eliminarProducto/<productoID>", methods=['POST'])
 def eliminarProducto(productoID):
    Producto.eliminarProducto(productoID)
    return "Producto eliminado"
