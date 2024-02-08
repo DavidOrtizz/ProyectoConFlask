@@ -33,14 +33,32 @@ def crearOperario():
     Rol = datos_json['Rol']
     SedeId = datos_json['SedeID']
 
-    return Operario.crearOperario(Nombre,Direccion,Rol,SedeId)
+    Operario.crearOperario(Nombre,Direccion,Rol,SedeId)
+    return "Operario Creado"
 
 @app.route('/operario/<int:OperarioID>')
 def operarioDetalle(OperarioID):
     return Operario.operarioDetalle(OperarioID)
 
+@app.route('/operario/<int:OperarioID>', methods=['PUT'])
+def modificaroOperario(OperarioID):
+
+    datos_json = request.json
+    nuevoNombre = datos_json['Nombre']
+    nuevaDireccion = datos_json['Direccion']
+    nuevoRol = datos_json['Rol']
+    nuevaSedeID = datos_json['SedeID']
+
+    Operario.modificarOperario(OperarioID, nuevoNombre, nuevaDireccion, nuevoRol, nuevaSedeID)
+    return "Operario modificado"
+
+@app.route('/operario/<int:OperarioID>', methods=['DELETE'])
+def borrarOperario(OperarioID):
+    Operario.borrarOperario(OperarioID)
+    return "Operario borrado" 
+
 """ 
-JSON:
+ESTRUCTURA JSON OPERARIO:
 
 {
     "Nombre": "Pablo",
@@ -48,16 +66,6 @@ JSON:
     "Rol": "Usuario",
     "SedeID": 1
 }
-
-@app.route('/operario/<OperarioID>', methods=['PUT'])
-def modificaroOperario():
-
-    return "<p>Hello, World!</p>"
-
-@app.route('/operario/<OperarioID>', methods=['DELETE'])
-def borrarOperario():
-
-    return "<p>Hello, World!</p>" 
 """
 
 # EndPoints de productos

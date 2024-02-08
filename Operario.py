@@ -11,7 +11,7 @@ def listaOperarios():
 
     con.close()
 
-    return resultados;
+    return resultados
 
 def crearOperario(Nombre, Direccion, Rol, SedeID):
     
@@ -35,4 +35,26 @@ def operarioDetalle(OperarioID):
 
     con.close()
 
-    return resultados;
+    return resultados
+
+def modificarOperario(OperarioID, nuevoNombre, nuevaDireccion, nuevoRol, nuevaSedeID):
+
+    con = sqlite3.connect("funkos.db")
+    cur = con.cursor()
+
+    cur.execute("UPDATE OPERARIO SET Nombre = ?, Direccion = ?, Rol = ?, SedeID = ? WHERE OperarioID = ?", (nuevoNombre, nuevaDireccion, nuevoRol, nuevaSedeID, OperarioID))
+
+    con.commit()
+
+    con.close()
+
+def borrarOperario(OperarioID):
+
+    con = sqlite3.connect("funkos.db")
+    cur = con.cursor()
+
+    cur.execute("DELETE FROM OPERARIO WHERE OperarioID = ?", str(OperarioID))
+
+    con.commit()
+
+    con.close()
