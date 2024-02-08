@@ -23,5 +23,5 @@ Ha realizado la creación de PEDIDO
 Ha realizado la creación de OPERARIO
 <br>
 **David** <br>
-Ha realizado la creación de PRODUCTO
+Ha realizado la creación de PRODUCTO y sus endpoints. Esto se ocupa de que se puedan mostrar nuestros productos, añadir nuevos productos, modificarlos y de eliminarlos.
 <br>
