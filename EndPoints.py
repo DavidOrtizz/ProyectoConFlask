@@ -4,6 +4,7 @@ from flask_cors import CORS
 
 import Operario
 import Producto
+import Pedido
 
 log_file = open('log.txt', 'w')
 
@@ -103,3 +104,40 @@ if __name__ == "__main__":
     app.run()
 
 
+
+# ENDPOINTS PEDIDO
+
+@app.route('/pedido')
+def listaPedidos():
+    return Pedido.listaPedidos()
+
+@app.route('/pedido', methods=['POST'])
+def crearPedido():
+
+    datos_json = request.json
+    OperarioID = datos_json['OperarioID']
+    TotalPedido = datos_json['TotalPedido']
+    Pagado = datos_json['Pagado']
+
+    Pedido.crearPedido(OperarioID, TotalPedido, Pagado)
+    return "Pedido Creado"
+
+@app.route('/pedido/<int:pedidoID>')
+def pedidoDetalle(PedidoID):
+    return Pedido.pedidoDetalle(PedidoID)
+
+@app.route('/pedido/<int:pedidoID>', methods=['PUT'])
+def modificarPedido(PedidoID):
+
+    datos_json = request.json
+    nuevoOperarioID = datos_json['OperarioID']
+    nuevoTotalPedido = datos_json['TotalPedido']
+    nuevoPagado = datos_json['Pagado']
+
+    Pedido.modificarPedido(PedidoID, nuevoOperarioID, nuevoTotalPedido, nuevoPagado)
+    return "Pedido modificado"
+
+@app.route('/pedido/<int:PedidoID>', methods=['DELETE'])
+def borrarPedido(PedidoID):
+    Operario.borrarOperario(PedidoID)
+    return "Pedido borrado" 
