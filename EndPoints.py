@@ -1,5 +1,6 @@
 from flask import Flask, request
 import sys
+from flask_cors import CORS
 
 import Operario
 import Producto
@@ -12,11 +13,7 @@ sys.stderr = log_file
 
 app = Flask(__name__)
 
-# ENDPOINT LANDING
-
-@app.route('/')
-def landing():
-    return "<h1>FLASK API</h1>"
+CORS(app)
 
 # ENDPOINTS OPERARIO
 

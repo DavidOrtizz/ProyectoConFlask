@@ -1,0 +1,67 @@
+<div class="container">
+  <button class="button" (click)="getOperarios()">LISTA OPERARIOS (ROL USUARIO)</button>
+
+  <div class="table-container">
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Direccion</th>
+        <th>Rol</th>
+        <th>SedeID</th>
+      </tr>
+      <tr *ngFor="let operario of listaOperarios">
+        <td>{{operario.ID}}</td>
+        <td>{{operario.Nombre}}</td>
+        <td>{{operario.Direccion}}</td>
+        <td>{{operario.Rol}}</td>
+        <td>{{operario.SedeID}}</td>
+      </tr>
+    </table>
+  </div>
+
+  <div>
+    <input class="input-field" type="number" placeholder="ID" [(ngModel)]="idBuscar">
+  </div>
+    <div class="table-container" *ngIf="operarioByID.ID != 0">
+      <table>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Direccion</th>
+          <th>Rol</th>
+          <th>SedeID</th>
+        </tr>
+        <tr>
+          <td>{{operarioByID.ID}}</td>
+          <td>{{operarioByID.Nombre}}</td>
+          <td>{{operarioByID.Direccion}}</td>
+          <td>{{operarioByID.Rol}}</td>
+          <td>{{operarioByID.SedeID}}</td>
+        </tr>
+      </table>
+    </div>
+    <button class="button" (click)="getOperarioByID()">OPERARIO POR ID</button>
+
+  <div class="form-container">
+    <input class="input-field" type="text" placeholder="Nombre" [(ngModel)]="operarioCrear.Nombre">
+    <input class="input-field" type="text" placeholder="Direccion" [(ngModel)]="operarioCrear.Direccion">
+    <input class="input-field" type="text" placeholder="Rol" [(ngModel)]="operarioCrear.Rol">
+    <input class="input-field" type="number" placeholder="SedeID" [(ngModel)]="operarioCrear.SedeID">
+  </div>
+  <button class="button" (click)="crearOperario()">CREAR OPERARIO</button>
+
+  <div class="form-container">
+    <input class="input-field" type="number" placeholder="ID" [(ngModel)]="operarioModificar.ID">
+    <input class="input-field" type="text" placeholder="Nombre" [(ngModel)]="operarioModificar.Nombre">
+    <input class="input-field" type="text" placeholder="Direccion" [(ngModel)]="operarioModificar.Direccion">
+    <input class="input-field" type="text" placeholder="Rol" [(ngModel)]="operarioModificar.Rol">
+    <input class="input-field" type="number" placeholder="SedeID" [(ngModel)]="operarioModificar.SedeID">
+  </div>
+  <button class="button" (click)="modificarOperario()">MODIFICAR OPERARIO</button>
+
+  <div>
+    <input class="input-field" type="number" placeholder="ID" [(ngModel)]="idBorrar">
+  </div>
+  <button class="button" (click)="borrarOperario()">BORRAR OPERARIO POR ID</button>
+</div>
