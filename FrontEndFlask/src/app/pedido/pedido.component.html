@@ -1,1 +1,60 @@
-<p>pedido works!</p>
+<div class="container">
+    <button class="button" (click)="getPedidos()">LISTA PEDIDOS</button>
+
+    <div class="table-container">
+        <table>
+            <tr>
+                <th>PedidoID</th>
+                <th>OperarioID</th>
+                <th>TotalPedidoEUR</th>
+                <th>Pagado</th>
+            </tr>
+            <tr *ngFor="let pedido of listaPedidos">
+                <td>{{pedido.PedidoID}}</td>
+                <td>{{pedido.OperarioID}}</td>
+                <td>{{pedido.TotalPedidoEUR}}</td>
+                <td>{{pedido.Pagado}}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div>
+        <input class="input-field" type="number" placeholder="ID" [(ngModel)]="idBuscar">
+    </div>
+    <div class="table-container" *ngIf="pedidoByID.PedidoID != 0">
+        <table>
+            <tr>
+                <th>PedidoID</th>
+                <th>OperarioID</th>
+                <th>TotalPedidoEUR</th>
+                <th>Pagado</th>
+            </tr>
+            <tr>
+                <td>{{pedidoByID.PedidoID}}</td>
+                <td>{{pedidoByID.OperarioID}}</td>
+                <td>{{pedidoByID.TotalPedidoEUR}}</td>
+                <td>{{pedidoByID.Pagado}}</td>
+            </tr>
+        </table>
+    </div>
+    <button class="button" (click)="getPedidoPorID()">Buscar OPERARIO POR ID</button>
+
+    <div class="form-container">
+        <input class="input-field" type="text" placeholder="OperarioID" [(ngModel)]="pedidoCrear.PedidoID">
+        <input class="input-field" type="text" placeholder="TotalPedidoEUR" [(ngModel)]="pedidoCrear.TotalPedidoEUR">
+        <input type="checkbox" id="cbox1" value="Pagado" [(ngModel)]="pedidoCrear.Pagado"/>
+    </div>
+    <button class="button" (click)="crearPedido()">CREAR Pedido</button>
+
+    <div class="form-container">
+        <input class="input-field" type="text" placeholder="OperarioID" [(ngModel)]="pedidoCrear.OperarioID">
+        <input class="input-field" type="text" placeholder="TotalPedidoEUR" [(ngModel)]="pedidoCrear.TotalPedidoEUR">
+        <input type="checkbox" id="cbox1" value="Pagado" [(ngModel)]="pedidoCrear.Pagado"/>
+    </div>
+    <button class="button" (click)="modificarPedido()">MODIFICAR PEDIDO</button>
+
+    <div>
+        <input class="input-field" type="number" placeholder="ID" [(ngModel)]="idBorrar">
+    </div>
+    <button class="button" (click)="borrarPedido()">BORRAR PEDIDO POR ID</button>
+</div>

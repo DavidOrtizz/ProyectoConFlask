@@ -1,4 +1,5 @@
 import sqlite3
+import json
 
 def listaPedidos():
     
@@ -13,12 +14,12 @@ def listaPedidos():
 
     return resultados
 
-def crearPedido(OperarioID, TotalPedido, Pagado):
+def crearPedido(OperarioID, TotalPedidoEUR, Pagado):
     
     con = sqlite3.connect("funkos.db")
     cur = con.cursor()
 
-    cur.execute("INSERT INTO PEDIDO (OperarioID, TotalPedido, Pagado) VALUES (?,?,)", (OperarioID, TotalPedido, Pagado))
+    cur.execute("INSERT INTO PEDIDO (OperarioID, TotalPedidoEUR, Pagado) VALUES (?,?,)", (OperarioID, TotalPedidoEUR, Pagado))
 
     con.commit()
 
@@ -37,12 +38,12 @@ def pedidoDetalle(PedidoID):
 
     return resultados
 
-def modificarPedido(PedidoID, nuevoOperarioID, nuevoTotalPedido, nuevoPagado):
+def modificarPedido(PedidoID, nuevoOperarioID, nuevoTotalPedidoEUR, nuevoPagado):
 
     con = sqlite3.connect("funkos.db")
     cur = con.cursor()
 
-    cur.execute("UPDATE Pedido SET OperarioID = ?, TotalPedido = ?, Pagado = ? WHERE PedidoID = ?", (nuevoOperarioID, nuevoTotalPedido, nuevoPagado, PedidoID))
+    cur.execute("UPDATE Pedido SET OperarioID = ?, TotalPedidoEUR = ?, Pagado = ? WHERE PedidoID = ?", (nuevoOperarioID, nuevoTotalPedidoEUR, nuevoPagado, PedidoID))
 
     con.commit()
 
@@ -58,3 +59,26 @@ def borrarPedido(PedidoID):
     con.commit()
 
     con.close()
+
+    
+def mapearPedidos(listaPedido):
+    pedidos_mapeados = []
+    for item in listaPedidos:
+        pedido = {
+            "PedidoID": item[0],
+            "OperarioID": item[1],
+            "TotalPagadoEUR": item[2],
+            "Pagado": item[3]
+        }
+        pedidos_mapeados.append(pedido)
+
+    return json.dumps(pedidos_mapeados, indent=2)
+
+def mapearPedido(pedido):
+    pedidoMapeado = {
+        "PedidoID": pedido[0][0],
+        "OperarioID": pedido[0][1],
+        "TotalPagadoEUR": pedido[0][2],
+        "Pagado": pedido[0][3]
+    }
+    return pedidoMapeado
