@@ -6,7 +6,7 @@ def listaOperarios():
     con = sqlite3.connect("funkos.db")
     cur = con.cursor()
 
-    cur.execute("SELECT * FROM OPERARIO WHERE Rol = 'Usuario'")
+    cur.execute("SELECT P.OperarioID, P.Nombre, P.Direccion, P.Rol, S.Direccion FROM OPERARIO P JOIN SEDE S ON P.SedeID = S.SedeID WHERE Rol = 'Usuario'")
 
     resultados = cur.fetchall()
 
@@ -30,13 +30,11 @@ def operarioDetalle(OperarioID):
     con = sqlite3.connect("funkos.db")
     cur = con.cursor()
 
-    cur.execute("SELECT * FROM OPERARIO WHERE OperarioID = ?", (str(OperarioID),))
+    cur.execute("SELECT P.OperarioID, P.Nombre, P.Direccion, P.Rol, S.Direccion FROM OPERARIO P JOIN SEDE S ON P.SedeID = S.SedeID WHERE OperarioID = ?", (str(OperarioID),))
 
     resultados = cur.fetchall()
 
     con.close()
-
-    print(str(resultados))
 
     return mapearOperario(resultados)
 
@@ -70,7 +68,7 @@ def mapearOperarios(listaOperarios):
             "Nombre": item[1],
             "Direccion": item[2],
             "Rol": item[3],
-            "SedeID": item[4]
+            "SedeDireccion": item[4]
         }
         operarios_mapeados.append(operario)
 
@@ -82,7 +80,7 @@ def mapearOperario(operario):
         "Nombre": operario[0][1],
         "Direccion": operario[0][2],
         "Rol": operario[0][3],
-        "SedeID": operario[0][4]
+        "SedeDireccion": operario[0][4]
     }
 
     return operarioMapeado

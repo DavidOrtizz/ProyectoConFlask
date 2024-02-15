@@ -4,6 +4,6 @@ export class Operario {
   Nombre: string = '';
   Direccion: string = '';
   Rol: string = '';
-  SedeID: number = 0;
+  SedeDireccion: number = 0;
 
 }
