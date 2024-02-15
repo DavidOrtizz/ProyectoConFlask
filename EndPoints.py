@@ -99,12 +99,6 @@ def añadirProducto(nombre, precio, descripcion, stock):
     return "Producto añadido"
 
 
-
-if __name__ == "__main__":
-    app.run()
-
-
-
 # ENDPOINTS PEDIDO
 
 @app.route('/pedido')
@@ -116,10 +110,10 @@ def crearPedido():
 
     datos_json = request.json
     OperarioID = datos_json['OperarioID']
-    TotalPedido = datos_json['TotalPedido']
+    TotalPedidoEUR = datos_json['TotalPedidoEUR']
     Pagado = datos_json['Pagado']
 
-    Pedido.crearPedido(OperarioID, TotalPedido, Pagado)
+    Pedido.crearPedido(OperarioID, TotalPedidoEUR, Pagado)
     return "Pedido Creado"
 
 @app.route('/pedido/<int:pedidoID>')
@@ -131,13 +125,21 @@ def modificarPedido(PedidoID):
 
     datos_json = request.json
     nuevoOperarioID = datos_json['OperarioID']
-    nuevoTotalPedido = datos_json['TotalPedido']
+    nuevoTotalPedidoEUR = datos_json['TotalPedidoEUR']
     nuevoPagado = datos_json['Pagado']
 
-    Pedido.modificarPedido(PedidoID, nuevoOperarioID, nuevoTotalPedido, nuevoPagado)
+    Pedido.modificarPedido(PedidoID, nuevoOperarioID, nuevoTotalPedidoEUR, nuevoPagado)
     return "Pedido modificado"
 
 @app.route('/pedido/<int:PedidoID>', methods=['DELETE'])
 def borrarPedido(PedidoID):
-    Operario.borrarOperario(PedidoID)
+    Pedido.borrarPedido(PedidoID)
     return "Pedido borrado" 
+
+
+
+if __name__ == "__main__":
+    app.run()
+
+
+
