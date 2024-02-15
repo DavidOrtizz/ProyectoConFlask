@@ -66,7 +66,7 @@ def mapearPedidos(listaPedido):
     for item in listaPedidos:
         pedido = {
             "PedidoID": item[0],
-            "OperarioID": item[1],
+            "OperarioNombre": item[1],
             "TotalPagadoEUR": item[2],
             "Pagado": item[3]
         }
@@ -77,7 +77,7 @@ def mapearPedidos(listaPedido):
 def mapearPedido(pedido):
     pedidoMapeado = {
         "PedidoID": pedido[0][0],
-        "OperarioID": pedido[0][1],
+        "OperarioNombre": pedido[0][1],
         "TotalPagadoEUR": pedido[0][2],
         "Pagado": pedido[0][3]
     }

@@ -5,16 +5,17 @@ from flask_cors import CORS
 import Operario
 import Producto
 import Pedido
+import Sede
+
+app = Flask(__name__)
+
+CORS(app)
 
 log_file = open('log.txt', 'w')
 
 print("Escribiendo resultados en log.txt")
 sys.stdout = log_file
 sys.stderr = log_file
-
-app = Flask(__name__)
-
-CORS(app)
 
 # ENDPOINTS OPERARIO
 
@@ -140,6 +141,3 @@ def borrarPedido(PedidoID):
 
 if __name__ == "__main__":
     app.run()
-
-
-

@@ -5,7 +5,7 @@
         <table>
             <tr>
                 <th>PedidoID</th>
-                <th>OperarioID</th>
+                <th>OperarioNombre</th>
                 <th>TotalPedidoEUR</th>
                 <th>Pagado</th>
             </tr>
@@ -37,7 +37,7 @@
             </tr>
         </table>
     </div>
-    <button class="button" (click)="getPedidoPorID()">Buscar OPERARIO POR ID</button>
+    <button class="button" (click)="getPedidoPorID()">Buscar Pedido POR ID</button>
 
     <div class="form-container">
         <input class="input-field" type="text" placeholder="OperarioID" [(ngModel)]="pedidoCrear.PedidoID">
