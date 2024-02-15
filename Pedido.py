@@ -6,7 +6,7 @@ def listaPedidos():
     con = sqlite3.connect("funkos.db")
     cur = con.cursor()
 
-    cur.execute("SELECT * FROM PEDIDO")
+    cur.execute("SELECT PedidoID, Operario.Nombre, TotalPedidoEUR, Pagado FROM PEDIDO JOIN OPERARIO ON PEDIDO.OperarioID = OPERARIO.OperarioID")
 
     resultados = cur.fetchall()
 

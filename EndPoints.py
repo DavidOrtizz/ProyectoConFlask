@@ -99,12 +99,6 @@ def añadirProducto(nombre, precio, descripcion, stock):
     return "Producto añadido"
 
 
-
-if __name__ == "__main__":
-    app.run()
-
-
-
 # ENDPOINTS PEDIDO
 
 @app.route('/pedido')
@@ -141,3 +135,11 @@ def modificarPedido(PedidoID):
 def borrarPedido(PedidoID):
     Pedido.borrarPedido(PedidoID)
     return "Pedido borrado" 
+
+
+
+if __name__ == "__main__":
+    app.run()
+
+
+
