@@ -73,11 +73,11 @@ ESTRUCTURA JSON OPERARIO:
 def mostrarProductos():
   return Producto.mostrarDatosProductos()
 
-@app.route("/mostrarProducto/<int:productoID>")
+@app.route("/productos/<int:productoID>")
 def mostrarProducto(productoID):
   return Producto.mostrarUnProducto(productoID)
 
-@app.route("/modificarProducto/<int:productoID>", methods=['POST'])
+@app.route("/productos/<int:productoID>", methods=['POST'])
 def modificarProducto(productoID):
     
     datos_json = request.json
@@ -89,14 +89,21 @@ def modificarProducto(productoID):
     Producto.modificarProducto(productoID, nuevoNombre, nuevoPrecio, nuevaDescripcion, nuevoStock)
     return "Producto modificado"
 
-@app.route("/eliminarProducto/<int:productoID>", methods=['DELETE'])
+@app.route("/productos/<int:productoID>", methods=['DELETE'])
 def eliminarProducto(productoID):
    Producto.eliminarProducto(productoID)
    return "Producto eliminado"
 
-@app.route("/añadirProducto", methods=['PUT'])
-def añadirProducto(nombre, precio, descripcion, stock):
-    Producto.añadirProducto(nombre, precio, descripcion, stock)
+@app.route("/productos", methods=['POTS'])
+def añadirProducto():
+    
+    datos_json = request.json
+    Nombre = datos_json['Nombre']
+    Precio = datos_json['PrecioEUR']
+    Descripcion = datos_json['Descripcion']
+    Stock = datos_json['StockDisponible']
+
+    Producto.añadirProducto(Nombre, Precio, Descripcion, Stock)
     return "Producto añadido"
 
 

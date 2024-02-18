@@ -1,1 +1,67 @@
-<p>producto works!</p>
+<div class="container">
+    <button class="button" (click)="getProductos()">LISTA PRODUCTOS</button>
+  
+    <div class="table-container">
+      <table>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>PrecioEUR</th>
+          <th>Descripción</th>
+          <th>StockDisponible</th>
+        </tr>
+        <tr *ngFor="let producto of listaProductos">
+          <td>{{producto.ID}}</td>
+          <td>{{producto.Nombre}}</td>
+          <td>{{producto.PrecioEUR}}</td>
+          <td>{{producto.Descripcion}}</td>
+          <td>{{producto.StockDisponible}}</td>
+        </tr>
+      </table>
+    </div>
+  
+    <div>
+      <input class="input-field" type="number" placeholder="ID" [(ngModel)]="idBuscar">
+    </div>
+      <div class="table-container" *ngIf="productoPorID.ID != 0">
+        <table>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>PrecioEUR</th>
+            <th>Descripción</th>
+            <th>StockDisponible</th>
+          </tr>
+          <tr>
+            <td>{{productoPorID.ID}}</td>
+            <td>{{productoPorID.Nombre}}</td>
+            <td>{{productoPorID.PrecioEUR}}</td>
+            <td>{{productoPorID.Descripcion}}</td>
+            <td>{{productoPorID.StockDisponible}}</td>
+          </tr>
+        </table>
+      </div>
+      <button class="button" (click)="getProductoPorID()">PRODUCTO POR ID</button>
+  
+    <div class="form-container">
+      <input class="input-field" type="text" placeholder="Nombre" [(ngModel)]="productoCrear.Nombre">
+      <input class="input-field" type="text" placeholder="PrecioEUR" [(ngModel)]="productoCrear.PrecioEUR">
+      <input class="input-field" type="text" placeholder="Descripción" [(ngModel)]="productoCrear.Descripcion">
+      <input class="input-field" type="number" placeholder="StockDisponible" [(ngModel)]="productoCrear.StockDisponible">
+    </div>
+    <button class="button" (click)="crearProducto()">CREAR PRODUCTO</button>
+  
+    <div class="form-container">
+      <input class="input-field" type="number" placeholder="ID" [(ngModel)]="productoModificar.ID">
+      <input class="input-field" type="text" placeholder="Nombre" [(ngModel)]="productoModificar.Nombre">
+      <input class="input-field" type="text" placeholder="PrecioEUR" [(ngModel)]="productoModificar.PrecioEUR">
+      <input class="input-field" type="text" placeholder="Descripción" [(ngModel)]="productoModificar.Descripcion">
+      <input class="input-field" type="number" placeholder="StockDisponible" [(ngModel)]="productoModificar.StockDisponible">
+    </div>
+    <button class="button" (click)="modificarProducto()">MODIFICAR PRODUCTO</button>
+  
+    <div>
+      <input class="input-field" type="number" placeholder="ID" [(ngModel)]="idBorrar">
+    </div>
+    <button class="button" (click)="borrarProducto()">BORRAR PRODUCTO POR ID</button>
+  </div>

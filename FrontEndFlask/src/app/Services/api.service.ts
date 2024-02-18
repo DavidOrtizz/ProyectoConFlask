@@ -4,6 +4,7 @@ import * as config from '../../assets/config.json';
 import { lastValueFrom } from 'rxjs';
 import { Operario } from '../Model/operario';
 import { Pedido } from '../Model/pedido';
+import { Producto } from '../Model/producto';
 
 @Injectable({
   providedIn: 'root'
@@ -74,7 +75,7 @@ export class APIService {
 
   // Peticiones PEDIDO
   async getListaPedidos() {
-    const request$ = await this.http.get(this.url + "/operario");
+    const request$ = await this.http.get(this.url + "/pedido");
     let listaPedidos: Pedido[] = await lastValueFrom(request$) as Pedido[]
     return listaPedidos;
   }
@@ -122,6 +123,60 @@ export class APIService {
     };
 
     const request$ = await this.http.delete(this.url + "/pedido/" + id, options);
+    await lastValueFrom(request$)
+  }
+
+  // Peticiones Productos
+
+  async getListaProductos() {
+    const request$ = await this.http.get(this.url + "/productos");
+    let listaProductos: Producto[] = await lastValueFrom(request$) as Producto[]
+    return listaProductos;
+  }
+
+  // Producto por ID
+  async getProductosPorID(id: number) {
+    const request$ = await this.http.get(this.url + "/productos/" + id);
+    let producto: Producto = await lastValueFrom(request$) as Producto
+    return producto;
+  }
+
+  // Crear Producto
+  async crearProducto(producto: Producto) {
+    const options: any = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
+      responseType: 'text'
+    };
+
+    const request$ = await this.http.post(this.url + "/productos", JSON.stringify(producto), options);
+    await lastValueFrom(request$)
+  }
+
+  // Modificar Producto
+  async modificarProducto(producto: Producto) {
+    const options: any = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
+      responseType: 'text'
+    };
+
+    const request$ = await this.http.put(this.url + "/productos/" + producto.ID, JSON.stringify(producto), options);
+    await lastValueFrom(request$)
+  }
+
+  // Borrar Producto
+  async borrarProducto(id: number) {
+    const options: any = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
+      responseType: 'text'
+    };
+
+    const request$ = await this.http.delete(this.url + "/productos/" + id, options);
     await lastValueFrom(request$)
   }
 }

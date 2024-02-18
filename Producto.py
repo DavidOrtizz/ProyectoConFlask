@@ -11,6 +11,8 @@ def mostrarDatosProductos():
     # Obtener todos los resultados
     resultados = cur.fetchall()
 
+    con.close()
+
     return resultados
 
 # Muestra solo un producto pasandole su id
@@ -20,6 +22,8 @@ def mostrarUnProducto(id_producto):
     
     # Obtener todos los resultados
     resultado = cur.fetchall()
+
+    con.close()
 
     return resultado
 
@@ -31,6 +35,8 @@ def modificarProducto(id_producto, nuevo_nombre, nuevo_precio, nueva_descripcion
     # Confirmar los cambios
     con.commit()
 
+    con.close()
+
 # Elimina un producto pasando su id
 def eliminarProducto(id_producto):
     # Ejecutar la consulta
@@ -39,6 +45,8 @@ def eliminarProducto(id_producto):
     # Confirmar los cambios
     con.commit()
 
+    con.close()
+
 # Añade un producto
 def añadirProducto(nombre, precio, descripcion, stock):
     # Ejecutar la consulta 
@@ -46,3 +54,5 @@ def añadirProducto(nombre, precio, descripcion, stock):
 
     # Confirmar los cambios
     con.commit()
+
+    con.close()
