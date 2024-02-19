@@ -12,14 +12,14 @@ def listaPedidos():
 
     con.close()
 
-    return resultados
+    return mapearPedidos(resultados)
 
 def crearPedido(OperarioID, TotalPedidoEUR, Pagado):
     
     con = sqlite3.connect("funkos.db")
     cur = con.cursor()
 
-    cur.execute("INSERT INTO PEDIDO (OperarioID, TotalPedidoEUR, Pagado) VALUES (?,?,)", (OperarioID, TotalPedidoEUR, Pagado))
+    cur.execute("INSERT INTO PEDIDO (OperarioID, TotalPedidoEUR, Pagado) VALUES (?,?,?)", (OperarioID, TotalPedidoEUR, Pagado))
 
     con.commit()
 
@@ -30,13 +30,13 @@ def pedidoDetalle(PedidoID):
     con = sqlite3.connect("funkos.db")
     cur = con.cursor()
 
-    cur.execute("SELECT * FROM PEDIDO WHERE PedidoID = ?", str(PedidoID))
+    cur.execute("SELECT * FROM PEDIDO WHERE PedidoID = ?", (str(PedidoID),))
 
-    resultados = cur.fetchall()
+    resultado = cur.fetchall()
 
     con.close()
 
-    return resultados
+    return mapearPedido(resultado)
 
 def modificarPedido(PedidoID, nuevoOperarioID, nuevoTotalPedidoEUR, nuevoPagado):
 

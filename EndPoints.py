@@ -20,9 +20,11 @@ sys.stderr = log_file
 
 # ENDPOINTS OPERARIO
 
+
 @app.route('/operario')
 def listaOperarios():
     return Operario.listaOperarios()
+
 
 @app.route('/operario', methods=['POST'])
 def crearOperario():
@@ -33,12 +35,14 @@ def crearOperario():
     Rol = datos_json['Rol']
     SedeId = datos_json['SedeID']
 
-    Operario.crearOperario(Nombre,Direccion,Rol,SedeId)
+    Operario.crearOperario(Nombre, Direccion, Rol, SedeId)
     return "Operario Creado"
+
 
 @app.route('/operario/<int:OperarioID>')
 def operarioDetalle(OperarioID):
     return Operario.operarioDetalle(OperarioID)
+
 
 @app.route('/operario/<int:OperarioID>', methods=['PUT'])
 def modificaroOperario(OperarioID):
@@ -49,13 +53,16 @@ def modificaroOperario(OperarioID):
     nuevoRol = datos_json['Rol']
     nuevaSedeID = datos_json['SedeID']
 
-    Operario.modificarOperario(OperarioID, nuevoNombre, nuevaDireccion, nuevoRol, nuevaSedeID)
+    Operario.modificarOperario(
+        OperarioID, nuevoNombre, nuevaDireccion, nuevoRol, nuevaSedeID)
     return "Operario modificado"
+
 
 @app.route('/operario/<int:OperarioID>', methods=['DELETE'])
 def borrarOperario(OperarioID):
     Operario.borrarOperario(OperarioID)
-    return "Operario borrado" 
+    return "Operario borrado"
+
 
 """ 
 ESTRUCTURA JSON OPERARIO:
@@ -70,34 +77,40 @@ ESTRUCTURA JSON OPERARIO:
 
 # EndPoints de productos
 
+
 @app.route("/productos")
 def mostrarProductos():
-  return Producto.mostrarDatosProductos()
+    return Producto.mostrarDatosProductos()
+
 
 @app.route("/productos/<int:productoID>")
 def mostrarProducto(productoID):
-  return Producto.mostrarUnProducto(productoID)
+    return Producto.mostrarUnProducto(productoID)
+
 
 @app.route("/productos/<int:productoID>", methods=['POST'])
 def modificarProducto(productoID):
-    
+
     datos_json = request.json
     nuevoNombre = datos_json['Nombre']
     nuevoPrecio = datos_json['PrecioEUR']
     nuevaDescripcion = datos_json['Descripcion']
     nuevoStock = datos_json['StockDisponible']
 
-    Producto.modificarProducto(productoID, nuevoNombre, nuevoPrecio, nuevaDescripcion, nuevoStock)
+    Producto.modificarProducto(
+        productoID, nuevoNombre, nuevoPrecio, nuevaDescripcion, nuevoStock)
     return "Producto modificado"
+
 
 @app.route("/productos/<int:productoID>", methods=['DELETE'])
 def eliminarProducto(productoID):
-   Producto.eliminarProducto(productoID)
-   return "Producto eliminado"
+    Producto.eliminarProducto(productoID)
+    return "Producto eliminado"
+
 
 @app.route("/productos", methods=['POTS'])
 def añadirProducto():
-    
+
     datos_json = request.json
     Nombre = datos_json['Nombre']
     Precio = datos_json['PrecioEUR']
@@ -108,11 +121,20 @@ def añadirProducto():
     return "Producto añadido"
 
 
+
+
 # ENDPOINTS PEDIDO
+
+""" {
+    "OperarioID": "1",
+    "TotalPedidoEUR": "20",
+    "Pagado": true
+} """
 
 @app.route('/pedido')
 def listaPedidos():
     return Pedido.listaPedidos()
+
 
 @app.route('/pedido', methods=['POST'])
 def crearPedido():
@@ -125,9 +147,11 @@ def crearPedido():
     Pedido.crearPedido(OperarioID, TotalPedidoEUR, Pagado)
     return "Pedido Creado"
 
+
 @app.route('/pedido/<int:pedidoID>')
 def pedidoDetalle(PedidoID):
     return Pedido.pedidoDetalle(PedidoID)
+
 
 @app.route('/pedido/<int:pedidoID>', methods=['PUT'])
 def modificarPedido(PedidoID):
@@ -137,15 +161,18 @@ def modificarPedido(PedidoID):
     nuevoTotalPedidoEUR = datos_json['TotalPedidoEUR']
     nuevoPagado = datos_json['Pagado']
 
-    Pedido.modificarPedido(PedidoID, nuevoOperarioID, nuevoTotalPedidoEUR, nuevoPagado)
+    Pedido.modificarPedido(PedidoID, nuevoOperarioID,
+                           nuevoTotalPedidoEUR, nuevoPagado)
     return "Pedido modificado"
+
 
 @app.route('/pedido/<int:PedidoID>', methods=['DELETE'])
 def borrarPedido(PedidoID):
     Pedido.borrarPedido(PedidoID)
-    return "Pedido borrado" 
+    return "Pedido borrado"
 
 
+""" 
 # ENDPOINTS Lista_Producto_Pedido
 
 @app.route('/listaproductopedido')
@@ -183,7 +210,7 @@ def modificarPedido(PedidoProductoID):
 def borrarListaProductoPedido(ProductoPedioID):
     ListaProductoPedido.borrarlistaProductoPedido(ProductoPedioID)
     return "Pedido borrado" 
-
+ """
 
 if __name__ == "__main__":
     app.run()

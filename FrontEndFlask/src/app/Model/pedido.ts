@@ -1,8 +1,8 @@
 export class Pedido {
 
-    PedidoID?: number = 0;
-    OperarioID: number = 0;
-    TotalPedidoEUR: number = 0;
+    PedidoID?: number;
+    OperarioID?: number;
+    TotalPedidoEUR?: number;
     Pagado: boolean = false;
   
   }
