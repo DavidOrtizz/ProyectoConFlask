@@ -6,6 +6,7 @@ import Operario
 import Producto
 import Pedido
 import Sede
+import ListaProductoPedido
 
 app = Flask(__name__)
 
@@ -144,6 +145,44 @@ def borrarPedido(PedidoID):
     Pedido.borrarPedido(PedidoID)
     return "Pedido borrado" 
 
+
+# ENDPOINTS Lista_Producto_Pedido
+
+@app.route('/listaproductopedido')
+def listaPedidos():
+    return ListaProductoPedido.selectListaProductoPedidos()
+
+@app.route('/listaproductopedido', methods=['POST'])
+def crearListaProductoPedido():
+
+    datos_json = request.json
+    ProductoID = datos_json['ProductoID']
+    PedidoID = datos_json['PedidoID']
+    Cantidad = datos_json['Cantidad']
+
+    ListaProductoPedido.crearPedido(ProductoID, PedidoID, Cantidad)
+    return "ListaProductoPedido Creado"
+
+@app.route('/listaproductopedido/<int:pedidoID>')
+def listaProductoPedidoDetalle(PedidoProductoID):
+    return ListaProductoPedido.listaProductoPedidoDetalle(PedidoProductoID)
+
+@app.route('listaproductopedido/<int:pedidoID>', methods=['PUT'])
+def modificarPedido(PedidoProductoID):
+
+    datos_json = request.json
+    nuevoProductoID = datos_json['OperarioID']
+    nuevoPedidoID = datos_json['TotalPedidoEUR']
+    nuevoCantidad = datos_json['Pagado'],
+    nuevoTotalProductoEUR = datos_json['TotalProductoEUR']
+
+    ListaProductoPedido.modificarLISTA_PRODUCTO_PEDIDO(nuevoProductoID, nuevoPedidoID, nuevoCantidad, nuevoTotalProductoEUR)
+    return "listaProductoPedido modificado"
+
+@app.route('/listaproductopedido/<int:pedidoID>', methods=['DELETE'])
+def borrarListaProductoPedido(ProductoPedioID):
+    ListaProductoPedido.borrarlistaProductoPedido(ProductoPedioID)
+    return "Pedido borrado" 
 
 
 if __name__ == "__main__":
