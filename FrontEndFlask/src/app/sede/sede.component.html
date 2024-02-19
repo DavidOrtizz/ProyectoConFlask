@@ -1,1 +1,56 @@
-<p>sede works!</p>
+<div class="container">
+    <button class="button" (click)="getSedes()">LISTA SEDES (ID SEDE)</button>
+  
+    <div class="table-container">
+      <table>
+        <tr>
+          <th>ID</th>
+          <th>Direccion</th>
+          <th>NIF</th>
+        </tr>
+        <tr *ngFor="let sede of listaSedes">
+          <td>{{sede.ID}}</td>
+          <td>{{sede.Direccion}}</td>
+          <td>{{sede.Nif}}</td>
+        </tr>
+      </table>
+    </div>
+  
+    <div>
+      <input class="input-field" type="number" placeholder="ID" [(ngModel)]="idBuscar">
+    </div>
+      <div class="table-container" *ngIf="sedeByID.ID != 0">
+        <table>
+          <tr>
+            <th>ID</th>
+            <th>Direccion</th>
+            <th>NIF</th>
+          </tr>
+          <tr>
+            <td>{{sedeByID.ID}}</td>
+            <td>{{sedeByID.Direccion}}</td>
+            <td>{{sedeByID.Nif}}</td>
+
+          </tr>
+        </table>
+      </div>
+      <button class="button" (click)="getSedeByID()">SEDE POR ID</button>
+  
+    <div class="form-container">
+      <input class="input-field" type="text" placeholder="Direccion" [(ngModel)]="sedeCrear.Direccion">
+      <input class="input-field" type="text" placeholder="NIF" [(ngModel)]="sedeCrear.Nif">
+    </div>
+    <button class="button" (click)="crearSede()">CREAR SEDE</button>
+  
+    <div class="form-container">
+      <input class="input-field" type="number" placeholder="ID" [(ngModel)]="sedeModificar.ID">
+      <input class="input-field" type="text" placeholder="Direccion" [(ngModel)]="sedeModificar.Direccion">
+      <input class="input-field" type="text" placeholder="NIF" [(ngModel)]="sedeModificar.Nif">
+    </div>
+    <button class="button" (click)="modificarSede()">MODIFICAR SEDE</button>
+  
+    <div>
+      <input class="input-field" type="number" placeholder="ID" [(ngModel)]="idBorrar">
+    </div>
+    <button class="button" (click)="borrarSede()">BORRAR SEDE POR ID</button>
+  </div>

@@ -172,6 +172,44 @@ def borrarPedido(PedidoID):
     return "Pedido borrado"
 
 
+#  ENDPOINTS SEDE
+
+
+@app.route('/sede')
+def listaSedesMurcia():
+    return Sede.listaSedesMurcia()
+
+@app.route('/sede', methods=['POST'])
+def anadirSede():
+
+    datos_json = request.json
+    direccion = datos_json['Direccion']
+    Nif = datos_json['Nif']
+
+    Sede.anadirSede(direccion,Nif)
+    return "Sede creada"
+
+@app.route('/sede/<int:ID>')
+def mostrarSede(ID):
+    return Sede.mostrarSede(ID)
+
+@app.route('/sede/<int:ID>', methods=['PUT'])
+def modificarSede(ID):
+
+    datos_json = request.json
+    ID = datos_json['ID']
+    direccion = datos_json['Direccion']
+    Nif = datos_json['Nif']
+
+    Sede.modificarSede(ID,direccion,Nif)
+    return "Sede modificada"
+
+@app.route('/sede/<int:ID>', methods=['DELETE'])
+def eliminarSede(ID):
+    Sede.eliminarSede(ID)
+    return "Sede borrada" 
+
+
 """ 
 # ENDPOINTS Lista_Producto_Pedido
 
