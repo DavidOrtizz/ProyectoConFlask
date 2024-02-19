@@ -45,8 +45,30 @@ Este endpoint modifica los datos del operario indicado por ID
 
 Este endpoint borra el operario indicado por ID
 <br>
-**David** <br>
-Ha realizado la creación de PRODUCTO
+## **David** <br>
+He realizado la creación de Productos, con varios endpoints, y el diseño que tiene el README.md <br>
+
+## **ENDPOINTS PRODUCTOS** <br>
+
+**GET /productos** <br>
+
+Este endpoint devuelve todos los productos de la base de datos
+
+**GET /productos/productoID** <br>
+
+Este endpoint devuelve todos los datos del producto indicando su ID
+
+**POST /productos** <br>
+
+Este endpoint se utiliza para crear un nuevo producto
+
+**PUT /productos/productoID** <br>
+
+Este endpoint modifica los datos del producto indicado por ID
+
+**DELETE /productos/productosID** <br>
+
+Este endpoint borra el producto indicado por ID
 <br>
 
 ## CÓDIGO SQLITE PARA BASE DE DATOS
