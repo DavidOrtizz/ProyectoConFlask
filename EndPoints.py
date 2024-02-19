@@ -181,7 +181,7 @@ def modificarPedido(PedidoProductoID):
 
 @app.route('/listaproductopedido/<int:pedidoID>', methods=['DELETE'])
 def borrarListaProductoPedido(ProductoPedioID):
-    ListaProductoPedido.borrarlistaProductoPedido(PedidoProductoID)
+    ListaProductoPedido.borrarlistaProductoPedido(ProductoPedioID)
     return "Pedido borrado" 
 
 
