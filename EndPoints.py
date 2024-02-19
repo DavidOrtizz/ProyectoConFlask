@@ -77,7 +77,7 @@ def mostrarProductos():
 def mostrarProducto(productoID):
   return Producto.mostrarUnProducto(productoID)
 
-@app.route("/productos/<int:productoID>", methods=['POST'])
+@app.route("/productos/<int:productoID>", methods=['PUT'])
 def modificarProducto(productoID):
     
     datos_json = request.json
