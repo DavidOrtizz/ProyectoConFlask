@@ -129,15 +129,15 @@ export class APIService {
 
   // Peticiones Productos
 
-  async getListaProductos() {
-    const request$ = await this.http.get(this.url + "/productos");
+  async getProductos() {
+    const request$ = await this.http.get(this.url + "/producto");
     let listaProductos: Producto[] = await lastValueFrom(request$) as Producto[]
     return listaProductos;
   }
 
   // Producto por ID
   async getProductosPorID(id: number) {
-    const request$ = await this.http.get(this.url + "/productos/" + id);
+    const request$ = await this.http.get(this.url + "/producto/" + id);
     let producto: Producto = await lastValueFrom(request$) as Producto
     return producto;
   }
@@ -151,7 +151,7 @@ export class APIService {
       responseType: 'text'
     };
 
-    const request$ = await this.http.post(this.url + "/productos", JSON.stringify(producto), options);
+    const request$ = await this.http.post(this.url + "/producto", JSON.stringify(producto), options);
     await lastValueFrom(request$)
   }
 
@@ -164,7 +164,7 @@ export class APIService {
       responseType: 'text'
     };
 
-    const request$ = await this.http.put(this.url + "/productos/" + producto.ID, JSON.stringify(producto), options);
+    const request$ = await this.http.put(this.url + "/producto/" + producto.ID, JSON.stringify(producto), options);
     await lastValueFrom(request$)
   }
 
@@ -177,7 +177,7 @@ export class APIService {
       responseType: 'text'
     };
 
-    const request$ = await this.http.delete(this.url + "/productos/" + id, options);
+    const request$ = await this.http.delete(this.url + "/producto/" + id, options);
     await lastValueFrom(request$)
   }
 

@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'operario', component: OperarioComponent },
   { path: 'producto', component: ProductoComponent },
+  { path: 'productos', component: ProductoComponent },
   { path: 'sede', component: SedeComponent },
   { path: 'pedido', component: PedidoComponent },
 ];
