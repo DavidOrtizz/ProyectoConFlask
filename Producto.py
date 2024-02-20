@@ -1,22 +1,47 @@
+import json
 import sqlite3
 
-con = sqlite3.connect("funkos.db")
-cur = con.cursor()
+def listaProducto():
+    
+    con = sqlite3.connect("funkos.db")
+    cur = con.cursor()
 
-#Muestra todos los productos de la base de datos
-def mostrarDatosProductos():
-    # Ejecutar la consulta
     cur.execute("SELECT * FROM PRODUCTO")
 
-    # Obtener todos los resultados
     resultados = cur.fetchall()
 
     con.close()
 
-    return resultados
+    return mapearProductos(resultados)
+
+# Añade un producto
+def añadirProducto(nombre, precio, descripcion, stock):
+    con = sqlite3.connect("funkos.db")
+    cur = con.cursor()
+    # Ejecutar la consulta 
+    cur.execute("INSERT INTO PRODUCTO (Nombre, PrecioEUR, Descripcion, StockDisponible) VALUES (?, ?, ?, ?)", (nombre, precio, descripcion, stock))
+
+    # Confirmar los cambios
+    con.commit()
+
+    con.close()
+
+    # Elimina un producto pasando su id
+def eliminarProducto(id_producto):
+    con = sqlite3.connect("funkos.db")
+    cur = con.cursor()
+    # Ejecutar la consulta
+    cur.execute("DELETE FROM PRODUCTO WHERE ProductoID = ?", (str(id_producto),))
+
+    # Confirmar los cambios
+    con.commit()
+
+    con.close()
 
 # Muestra solo un producto pasandole su id
-def mostrarUnProducto(id_producto):
+def mostrarProducto(id_producto):
+    con = sqlite3.connect("funkos.db")
+    cur = con.cursor()
     # Ejecutar la consulta
     cur.execute("SELECT * FROM PRODUCTO WHERE ProductoID = ?", (id_producto,))
     
@@ -25,10 +50,12 @@ def mostrarUnProducto(id_producto):
 
     con.close()
 
-    return resultado
+    return mapearProducto(resultado)
 
 # Modifica los datos del producto pasando su id
 def modificarProducto(id_producto, nuevo_nombre, nuevo_precio, nueva_descripcion, nuevo_stock):
+    con = sqlite3.connect("funkos.db")
+    cur = con.cursor()
     # Ejecutar la consulta
     cur.execute("UPDATE PRODUCTO SET Nombre = ?, PrecioEUR = ?, Descripcion = ?, StockDisponible = ? WHERE ProductoID = ?", (nuevo_nombre, nuevo_precio, nueva_descripcion, nuevo_stock, id_producto))
 
@@ -37,22 +64,27 @@ def modificarProducto(id_producto, nuevo_nombre, nuevo_precio, nueva_descripcion
 
     con.close()
 
-# Elimina un producto pasando su id
-def eliminarProducto(id_producto):
-    # Ejecutar la consulta
-    cur.execute("DELETE FROM PRODUCTO WHERE ProductoID = ?", (id_producto,))
+def mapearProductos(listaProductos):
+    productos_mapeados = []
+    for item in listaProductos:
+        producto = {
+            "ID": item[0],
+            "Nombre": item[1],
+            "PrecioEUR": item[2],
+            "Descripcion": item[3],
+            "StockDisponible": item[4]
+        }
+        productos_mapeados.append(producto)
 
-    # Confirmar los cambios
-    con.commit()
+    return json.dumps(productos_mapeados, indent=2)
 
-    con.close()
+def mapearProducto(producto):
+    productoMapeado = {
+        "ID": producto[0][0],
+        "Nombre": producto[0][1],
+        "PrecioEUR": producto[0][2],
+        "Descripcion": producto[0][3],
+        "StockDisponible": producto[0][4]
+    }
 
-# Añade un producto
-def añadirProducto(nombre, precio, descripcion, stock):
-    # Ejecutar la consulta 
-    cur.execute("INSERT INTO PRODUCTO (Nombre, PrecioEUR, Descripcion, StockDisponible) VALUES (?, ?, ?, ?)", (nombre, precio, descripcion, stock))
-
-    # Confirmar los cambios
-    con.commit()
-
-    con.close()
+    return productoMapeado

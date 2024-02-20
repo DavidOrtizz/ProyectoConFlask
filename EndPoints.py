@@ -33,7 +33,7 @@ def crearOperario():
     Nombre = datos_json['Nombre']
     Direccion = datos_json['Direccion']
     Rol = datos_json['Rol']
-    SedeId = datos_json['SedeID']
+    SedeId = datos_json['SedeDireccion']
 
     Operario.crearOperario(Nombre, Direccion, Rol, SedeId)
     return "Operario Creado"
@@ -51,7 +51,7 @@ def modificaroOperario(OperarioID):
     nuevoNombre = datos_json['Nombre']
     nuevaDireccion = datos_json['Direccion']
     nuevoRol = datos_json['Rol']
-    nuevaSedeID = datos_json['SedeID']
+    nuevaSedeID = datos_json['SedeDireccion']
 
     Operario.modificarOperario(
         OperarioID, nuevoNombre, nuevaDireccion, nuevoRol, nuevaSedeID)
@@ -78,17 +78,28 @@ ESTRUCTURA JSON OPERARIO:
 # EndPoints de productos
 
 
-@app.route("/productos")
-def mostrarProductos():
-    return Producto.mostrarDatosProductos()
+@app.route('/producto')
+def listaProducto():
+    return Producto.listaProducto()
 
+@app.route('/producto', methods=['POST'])
+def añadirProducto():
 
-@app.route("/productos/<int:productoID>")
+    datos_json = request.json
+    nombre = datos_json['Nombre']
+    precio = datos_json['PrecioEUR']
+    descripcion = datos_json['Descripcion']
+    stock = datos_json['StockDisponible']
+
+    Producto.añadirProducto(nombre, precio, descripcion, stock)
+    return "Producto añadido"
+
+@app.route('/producto/<int:productoID>')
 def mostrarProducto(productoID):
-    return Producto.mostrarUnProducto(productoID)
+    return Producto.mostrarProducto(productoID)
 
 
-@app.route("/productos/<int:productoID>", methods=['PUT'])
+@app.route('/producto/<int:productoID>', methods=['PUT'])
 def modificarProducto(productoID):
 
     datos_json = request.json
@@ -102,23 +113,10 @@ def modificarProducto(productoID):
     return "Producto modificado"
 
 
-@app.route("/productos/<int:productoID>", methods=['DELETE'])
+@app.route('/producto/<int:productoID>', methods=['DELETE'])
 def eliminarProducto(productoID):
     Producto.eliminarProducto(productoID)
     return "Producto eliminado"
-
-
-@app.route("/productos", methods=['POTS'])
-def añadirProducto():
-
-    datos_json = request.json
-    Nombre = datos_json['Nombre']
-    Precio = datos_json['PrecioEUR']
-    Descripcion = datos_json['Descripcion']
-    Stock = datos_json['StockDisponible']
-
-    Producto.añadirProducto(Nombre, Precio, Descripcion, Stock)
-    return "Producto añadido"
 
 
 # ENDPOINTS PEDIDO
@@ -170,6 +168,45 @@ def modificarPedido(PedidoID):
 def borrarPedido(PedidoID):
     Pedido.borrarPedido(PedidoID)
     return "Pedido borrado"
+
+
+#  ENDPOINTS SEDE
+
+
+@app.route('/sede')
+def listaSedesMurcia():
+    return Sede.listaSedesMurcia()
+
+@app.route('/sede', methods=['POST'])
+def anadirSede():
+
+    datos_json = request.json
+    direccion = datos_json['Direccion']
+    Nif = datos_json['Nif']
+
+    Sede.anadirSede(direccion,Nif)
+    return "Sede creada"
+
+@app.route('/sede/<int:ID>')
+def mostrarSede(ID):
+    return Sede.mostrarSede(ID)
+
+@app.route('/sede/<int:ID>', methods=['PUT'])
+def modificarSede(ID):
+
+    datos_json = request.json
+    ID = datos_json['ID']
+    direccion = datos_json['Direccion']
+    Nif = datos_json['Nif']
+
+    Sede.modificarSede(ID,direccion,Nif)
+    return "Sede modificada"
+
+@app.route('/sede/<int:ID>', methods=['DELETE'])
+def eliminarSede(ID):
+    Sede.eliminarSede(ID)
+    return "Sede borrada" 
+
 
 
 if __name__ == "__main__":

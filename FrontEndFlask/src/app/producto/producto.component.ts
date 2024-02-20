@@ -10,7 +10,7 @@ import { Producto } from '../Model/producto';
 export class ProductoComponent {
 
   listaProductos: Producto[] = [];
-  productoPorID: Producto = new Producto;
+  productoPorID: Producto = new Producto();
   productoCrear: Producto = new Producto;
   productoModificar: Producto = new Producto;
 
@@ -20,7 +20,7 @@ export class ProductoComponent {
   constructor(private api: APIService) { }
 
   async getProductos() {
-    this.listaProductos = await this.api.getListaProductos();
+    this.listaProductos = await this.api.getProductos() as Producto[];
 
   }
 

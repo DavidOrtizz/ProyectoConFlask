@@ -21,32 +21,55 @@ Ha realizado la creación de la SEDE
 **Ionut** <br>
 Ha realizado la creación de PEDIDO
 <br>
-**Pablo** <br>
+## **Pablo** <br>
 Ha realizado la creación de OPERARIO, con 5 endpoints, y la creación y configuración de un mini-frontend con angular y el uso de un fichero log. <br>
-**ENDPOINTS OPERARIO** <br>
 
-## GET /operario <br>
+## **ENDPOINTS OPERARIO** <br>
+
+**GET /operario** <br>
 
 Este endpoint devuelve todos los operarios de la base de datos, los cuales tienen el rol de "Usuario"
 
-## GET /operario/OperarioID <br>
+**GET /operario/OperarioID** <br>
 
 Este endpoint devuelve todos los datos del operario indicado por ID
 
-## POST /operario <br>
+**POST /operario** <br>
 
 Este endpoint se utiliza para crear un operario (Los datos se mandan por json)
 
-## PUT /operario/OperarioID <br>
+**PUT /operario/OperarioID** <br>
 
 Este endpoint modifica los datos del operario indicado por ID
 
-## DELETE /operario/OperarioID <br>
+**DELETE /operario/OperarioID** <br>
 
 Este endpoint borra el operario indicado por ID
 <br>
-**David** <br>
-Ha realizado la creación de PRODUCTO
+## **David** <br>
+He realizado la creación de Productos, con 5 endpoints, y el diseño que tiene el README.md <br>
+
+## **ENDPOINTS PRODUCTOS** <br>
+
+**GET /productos** <br>
+
+Este endpoint devuelve todos los productos de la base de datos
+
+**GET /productos/productoID** <br>
+
+Este endpoint devuelve todos los datos del producto indicando su ID
+
+**POST /productos** <br>
+
+Este endpoint se utiliza para crear un nuevo producto
+
+**PUT /productos/productoID** <br>
+
+Este endpoint modifica los datos del producto indicado por ID
+
+**DELETE /productos/productosID** <br>
+
+Este endpoint borra el producto indicado por ID
 <br>
 
 ## CÓDIGO SQLITE PARA BASE DE DATOS
