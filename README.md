@@ -120,7 +120,13 @@ Este endpoint modifica los datos de la sede que se le ha indicado mediante el ID
 Este endpoint borra la sede que se le ha indicado mediante el ID
 <br>
 
-
+## RECURSOS
+## CONFIG.JSON (Carpeta assets de FrontEndFlask)
+{
+  "api": {
+    "host": "http://localhost:5000"
+  }
+}
 ## CÓDIGO SQLITE PARA BASE DE DATOS
 
 -- Create OPERARIO table
