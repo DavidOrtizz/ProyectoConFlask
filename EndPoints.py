@@ -11,13 +11,13 @@ import ListaProductoPedido
 app = Flask(__name__)
 
 CORS(app)
-"""
+
 log_file = open('log.txt', 'w')
 
 print("Escribiendo resultados en log.txt")
 sys.stdout = log_file
 sys.stderr = log_file
-"""
+
 # ENDPOINTS OPERARIO
 
 
