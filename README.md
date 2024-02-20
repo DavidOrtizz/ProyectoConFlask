@@ -14,10 +14,7 @@ Estamos creando una pagina web donde nuestros usuarios podrán registrarse y com
 ## ¿Que ha realizado cada uno?
 
 ![Nuestra base de datos](https://github.com/DavidOrtizz/ProyectoConFlask/assets/116579416/c2dd320c-394f-45b6-ae19-fa564cc83701)
-<br>
-**Alejandro** <br>
-Ha realizado la creación de la SEDE
-<br>
+
 **Ionut** <br>
 Ha realizado la creación de PEDIDO
 <br>
