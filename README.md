@@ -30,11 +30,11 @@ Este endpoint devuelve todos los datos del pedido indicado por ID juntandola con
 
 Este endpoint se utiliza para crear un pedido (Los datos se mandan por json)
 
-**PUT /pedido/PedidoID** <br>
+**PUT /modificaPedido/PedidoID** <br>
 
 Este endpoint modifica los datos del pedido indicado por ID
 
-**DELETE /pedido/PedidoID** <br>
+**DELETE /borrarPedido/PedidoID** <br>
 
 Este endpoint borra el pedido indicado por ID
 
