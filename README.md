@@ -42,7 +42,6 @@ Me he quedado a medias implementando la tabla intermedia entre pedido y producto
 
  
 <br>
-<br>
 ## **Pablo** <br>
 Ha realizado la creación de OPERARIO, con 5 endpoints, y la creación y configuración de un mini-frontend con angular y el uso de un fichero log. <br>
 
@@ -97,7 +96,7 @@ Este endpoint borra el producto indicado por ID
 ## **Alejandro** <br>
 He realizado todo lo relacionado a Sede, y los 5 endpoints <br>
 
-## **ENDPOINTS PRODUCTOS** <br>
+## **ENDPOINTS SEDE** <br>
 
 **GET /listaSedesMurcia** <br>
 
