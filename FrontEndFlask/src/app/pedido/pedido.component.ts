@@ -19,6 +19,7 @@ export class PedidoComponent {
 
   idBuscar: number = 0;
   idBorrar: number = 0;
+  idModificar: number = 0;
 
   constructor(private api: APIService) { }
 

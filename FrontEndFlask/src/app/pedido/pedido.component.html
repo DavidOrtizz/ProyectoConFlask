@@ -1,10 +1,12 @@
 <div class="container">
+    <h1>LISTAR PEDIDOS</h1>
     <button class="button" (click)="getPedidos()">LISTA PEDIDOS</button>
 
     <div class="table-container">
         <table>
             <tr>
                 <th>PedidoID</th>
+                <th>OperarioID</th>
                 <th>OperarioNombre</th>
                 <th>TotalPedidoEUR</th>
                 <th>Pagado</th>
@@ -12,12 +14,19 @@
             <tr *ngFor="let pedido of listaPedidos">
                 <td>{{pedido.PedidoID}}</td>
                 <td>{{pedido.OperarioID}}</td>
+                <td>{{pedido.OperarioNombre}}</td>
                 <td>{{pedido.TotalPedidoEUR}}</td>
-                <td>{{pedido.Pagado}}</td>
+                <td *ngIf="pedido.Pagado else noPagado">Pagado</td>
+                <ng-template #noPagado>
+                    No pagado
+                </ng-template>
             </tr>
         </table>
     </div>
-
+    <hr class="dotted"><hr class="dotted">
+    <br><br><br>
+    
+    <h1>BUSCAR PEDIDO POR ID</h1>
     <div>
         <input class="input-field" type="number" placeholder="ID" [(ngModel)]="idBuscar">
     </div>
@@ -31,28 +40,39 @@
             </tr>
             <tr>
                 <td>{{pedidoByID.PedidoID}}</td>
-                <td>{{pedidoByID.OperarioID}}</td>
+                <td>{{pedidoByID.OperarioNombre}}</td>
                 <td>{{pedidoByID.TotalPedidoEUR}}</td>
-                <td>{{pedidoByID.Pagado}}</td>
+                <td *ngIf="pedidoByID.Pagado else noPagado">Pagado</td>
+                <ng-template #noPagado>
+                    No pagado
+                </ng-template>
             </tr>
         </table>
     </div>
     <button class="button" (click)="getPedidoPorID()">Buscar Pedido POR ID</button>
-
+    <hr class="dotted">
+    <hr class="dotted"><br><br><br>
     <div class="form-container">
         <input class="input-field" type="text" placeholder="OperarioID" [(ngModel)]="pedidoCrear.PedidoID">
         <input class="input-field" type="text" placeholder="TotalPedidoEUR" [(ngModel)]="pedidoCrear.TotalPedidoEUR">
-        <input type="checkbox" id="cbox1" value="Pagado" [(ngModel)]="pedidoCrear.Pagado"/>
+        <input type="checkbox" id="cbox1" value="Pagado" [(ngModel)]="pedidoCrear.Pagado"/>¿Pagado?
     </div>
     <button class="button" (click)="crearPedido()">CREAR Pedido</button>
-
+    <hr class="dotted">
+    <hr class="dotted"> <br><br><br>
+    <h1>MODIFICAR PEDIDO</h1>
     <div class="form-container">
-        <input class="input-field" type="text" placeholder="OperarioID" [(ngModel)]="pedidoCrear.OperarioID">
-        <input class="input-field" type="text" placeholder="TotalPedidoEUR" [(ngModel)]="pedidoCrear.TotalPedidoEUR">
-        <input type="checkbox" id="cbox1" value="Pagado" [(ngModel)]="pedidoCrear.Pagado"/>
+        <input class="input-field" type="text" placeholder="PedidoID" [(ngModel)]="pedidoModificar.PedidoID">
+        <input class="input-field" type="text" placeholder="OperarioID" [(ngModel)]="pedidoModificar.OperarioID">
+        <input class="input-field" type="text" placeholder="TotalPedidoEUR" [(ngModel)]="pedidoModificar.TotalPedidoEUR">
+        <input type="checkbox" id="cbox1" value="Pagado" [(ngModel)]="pedidoModificar.Pagado"/>¿Pagado?
     </div>
     <button class="button" (click)="modificarPedido()">MODIFICAR PEDIDO</button>
 
+
+    <hr class="dotted">
+    <hr class="dotted"><br><br><br>
+    <h1>BORRAR PEDIDO</h1>
     <div>
         <input class="input-field" type="number" placeholder="ID" [(ngModel)]="idBorrar">
     </div>

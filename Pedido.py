@@ -1,12 +1,15 @@
 import sqlite3
 import json
+import ListaProductoPedido
+
 
 def listaPedidos():
-    
+
     con = sqlite3.connect("funkos.db")
     cur = con.cursor()
 
-    cur.execute("SELECT PedidoID, Operario.Nombre, TotalPedidoEUR, Pagado FROM PEDIDO JOIN OPERARIO ON PEDIDO.OperarioID = OPERARIO.OperarioID")
+    cur.execute(
+        "SELECT P.PedidoID, O.OperarioID, O.Nombre, P.TotalPedidoEUR, P.Pagado FROM PEDIDO P JOIN OPERARIO O ON P.OperarioID = O.OperarioID")
 
     resultados = cur.fetchall()
 
@@ -14,40 +17,44 @@ def listaPedidos():
 
     return mapearPedidos(resultados)
 
+
 def crearPedido(OperarioID, TotalPedidoEUR, Pagado):
-    
+
     con = sqlite3.connect("funkos.db")
     cur = con.cursor()
-
-    cur.execute("INSERT INTO PEDIDO (OperarioID, TotalPedidoEUR, Pagado) VALUES (?,?,?)", (OperarioID, TotalPedidoEUR, Pagado))
+    cur.execute("INSERT INTO PEDIDO (OperarioID, TotalPedidoEUR, Pagado) VALUES (?,?,?)",
+                (OperarioID, TotalPedidoEUR, Pagado))
 
     con.commit()
-
     con.close()
 
+
 def pedidoDetalle(PedidoID):
-    
+
     con = sqlite3.connect("funkos.db")
     cur = con.cursor()
 
-    cur.execute("SELECT * FROM PEDIDO WHERE PedidoID = ?", (str(PedidoID),))
+    cur.execute("SELECT P.PedidoID, O.OperarioID, O.Nombre, P.TotalPedidoEUR, P.Pagado FROM PEDIDO P JOIN OPERARIO O ON P.OperarioID = O.OperarioID WHERE P.PedidoID = (?)", (str(PedidoID)))
 
     resultado = cur.fetchall()
-
+    print(resultado)
     con.close()
 
     return mapearPedido(resultado)
+
 
 def modificarPedido(PedidoID, nuevoOperarioID, nuevoTotalPedidoEUR, nuevoPagado):
 
     con = sqlite3.connect("funkos.db")
     cur = con.cursor()
 
-    cur.execute("UPDATE Pedido SET OperarioID = ?, TotalPedidoEUR = ?, Pagado = ? WHERE PedidoID = ?", (nuevoOperarioID, nuevoTotalPedidoEUR, nuevoPagado, PedidoID))
+    cur.execute("UPDATE Pedido SET OperarioID = ?, TotalPedidoEUR = ?, Pagado = ? WHERE PedidoID = ?",
+                (nuevoOperarioID, nuevoTotalPedidoEUR, nuevoPagado, PedidoID))
 
     con.commit()
 
     con.close()
+
 
 def borrarPedido(PedidoID):
 
@@ -60,25 +67,28 @@ def borrarPedido(PedidoID):
 
     con.close()
 
-    
+
 def mapearPedidos(listaPedido):
     pedidos_mapeados = []
-    for item in listaPedidos:
+    for item in listaPedido:
         pedido = {
             "PedidoID": item[0],
-            "OperarioNombre": item[1],
-            "TotalPagadoEUR": item[2],
-            "Pagado": item[3]
+            "OperarioID": item[1],
+            "OperarioNombre": item[2],
+            "TotalPedidoEUR": item[3],
+            "Pagado": item[4]
         }
         pedidos_mapeados.append(pedido)
 
-    return json.dumps(pedidos_mapeados, indent=2)
+    return json.dumps(pedidos_mapeados, indent=4)
+
 
 def mapearPedido(pedido):
     pedidoMapeado = {
         "PedidoID": pedido[0][0],
-        "OperarioNombre": pedido[0][1],
-        "TotalPagadoEUR": pedido[0][2],
-        "Pagado": pedido[0][3]
+        "OperarioID": pedido[0][1],
+        "OperarioNombre": pedido[0][2],
+        "TotalPedidoEUR": pedido[0][3],
+        "Pagado": pedido[0][4]
     }
     return pedidoMapeado

@@ -72,10 +72,10 @@ export class APIService {
     await lastValueFrom(request$)
   }
 
-
+//----------------------------------------------------------------------------------------------------------------------------------------------------
   // Peticiones PEDIDO
   async getListaPedidos() {
-    const request$ = await this.http.get(this.url + "/pedido");
+    const request$ = await this.http.get(this.url + "/pedidos");
     let listaPedidos: Pedido[] = await lastValueFrom(request$) as Pedido[]
     return listaPedidos;
   }
@@ -96,7 +96,7 @@ export class APIService {
       responseType: 'text'
     };
 
-    const request$ = await this.http.post(this.url + "/pedido", JSON.stringify(pedido), options);
+    const request$ = await this.http.post(this.url + "/crearPedido", JSON.stringify(pedido), options);
     await lastValueFrom(request$)
   }
 
@@ -109,7 +109,7 @@ export class APIService {
       responseType: 'text'
     };
 
-    const request$ = await this.http.put(this.url + "/pedido/" + pedido.PedidoID, JSON.stringify(pedido), options);
+    const request$ = await this.http.put(this.url + "/modificaPedido/" + pedido.PedidoID, JSON.stringify(pedido), options);
     await lastValueFrom(request$)
   }
 
@@ -122,7 +122,7 @@ export class APIService {
       responseType: 'text'
     };
 
-    const request$ = await this.http.delete(this.url + "/pedido/" + id, options);
+    const request$ = await this.http.delete(this.url + "/borrarPedido/" + id, options);
     await lastValueFrom(request$)
   }
 

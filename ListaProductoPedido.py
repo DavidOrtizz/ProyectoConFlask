@@ -22,9 +22,9 @@ def crearListaProductoPedido(ProductoID, PedidoID, Cantidad):
     con = sqlite3.connect("funkos.db")
     cur = con.cursor()
     TotalProductoEUR = calculaTotalProductoEUR(ProductoID, Cantidad)
-
+    print("el total producto es", TotalProductoEUR[0])
     cur.execute("INSERT INTO LISTA_PRODUCTO_PEDIDO (ProductoID, PedidoID, Cantidad, TotalProductoEUR) VALUES (?,?,?,?)",
-                (ProductoID, PedidoID, Cantidad, TotalProductoEUR))
+                (str(ProductoID),str(PedidoID), str(Cantidad), str(TotalProductoEUR[0])))
 
     con.commit()
 
@@ -36,7 +36,8 @@ def calculaTotalProductoEUR(ProductoID, Cantidad):
     cur = con.cursor()
     cur.execute("SELECT PrecioEUR FROM PRODUCTO WHERE ProductoID = ProductoID")
 
-    precioEUR = cur.fetchall()
+    precioEUR = cur.fetchone()
+    print("EL PRECIO ES ", precioEUR)
     precioEUR *= Cantidad
 
     con.commit()
