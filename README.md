@@ -41,7 +41,6 @@ Este endpoint borra el pedido indicado por ID
 Me he quedado a medias implementando la tabla intermedia entre pedido y producto, la versión final está sin dicha tabla, está solo la versión funcional de pedido.
 
  
-<br>
 ## **Pablo** <br>
 Ha realizado la creación de OPERARIO, con 5 endpoints, y la creación y configuración de un mini-frontend con angular y el uso de un fichero log. <br>
 
