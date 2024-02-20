@@ -37,6 +37,10 @@ Este endpoint modifica los datos del pedido indicado por ID
 **DELETE /pedido/PedidoID** <br>
 
 Este endpoint borra el pedido indicado por ID
+
+Me he quedado a medias implementando la tabla intermedia entre pedido y producto, la versión final está sin dicha tabla, está solo la versión funcional de pedido.
+
+ 
 <br>
 <br>
 ## **Pablo** <br>
