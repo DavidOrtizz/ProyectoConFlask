@@ -37,7 +37,6 @@ def pedidoDetalle(PedidoID):
     cur.execute("SELECT P.PedidoID, O.OperarioID, O.Nombre, P.TotalPedidoEUR, P.Pagado FROM PEDIDO P JOIN OPERARIO O ON P.OperarioID = O.OperarioID WHERE P.PedidoID = (?)", (str(PedidoID)))
 
     resultado = cur.fetchall()
-    print(resultado)
     con.close()
 
     return mapearPedido(resultado)
