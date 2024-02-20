@@ -16,7 +16,28 @@ Estamos creando una pagina web donde nuestros usuarios podrán registrarse y com
 ![Nuestra base de datos](https://github.com/DavidOrtizz/ProyectoConFlask/assets/116579416/c2dd320c-394f-45b6-ae19-fa564cc83701)
 
 **Ionut** <br>
-Ha realizado la creación de PEDIDO
+Ha realizado la creación de PEDIDO, con 5 endpoints, configuración de su front-end.<br>
+## **ENDPOINTS PEDIDO** <br>
+**GET /pedidos** <br>
+
+Este endpoint devuelve todos los pedidos de la base de datos de la tabla Pedido juntandola con la tabla de Operario para que aparezca el nombre del operario que gestiona dicho pedido.
+
+**GET /pedido/PedidoID** <br>
+
+Este endpoint devuelve todos los datos del pedido indicado por ID juntandola con la tabla de Operario para que aparezca el nombre del operario que gestiona dicho pedido.
+
+**POST /crearPedido** <br>
+
+Este endpoint se utiliza para crear un pedido (Los datos se mandan por json)
+
+**PUT /pedido/PedidoID** <br>
+
+Este endpoint modifica los datos del pedido indicado por ID
+
+**DELETE /pedido/PedidoID** <br>
+
+Este endpoint borra el pedido indicado por ID
+<br>
 <br>
 ## **Pablo** <br>
 Ha realizado la creación de OPERARIO, con 5 endpoints, y la creación y configuración de un mini-frontend con angular y el uso de un fichero log. <br>
