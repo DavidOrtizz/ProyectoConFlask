@@ -20,7 +20,6 @@ export class SedeComponent {
 
   async getSedes() {
     this.listaSedes = await this.api.getSedes() as Sede[];
-    console.log(this.listaSedes)
 
   }
 
@@ -41,6 +40,5 @@ export class SedeComponent {
 
   borrarSede() {
     this.api.borrarSede(this.idBorrar);
-    console.log(this.listaSedes)
   }
 }
