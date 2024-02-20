@@ -71,6 +71,33 @@ Este endpoint modifica los datos del producto indicado por ID
 
 Este endpoint borra el producto indicado por ID
 <br>
+<br>
+## **Alejandro** <br>
+He realizado todo lo relacionado a Sede, y los 5 endpoints <br>
+
+## **ENDPOINTS PRODUCTOS** <br>
+
+**GET /listaSedesMurcia** <br>
+
+Este endpoint devuelve todas las sedes de la base de datos(no solo de murcia)
+
+**GET /sede/ID** <br>
+
+Este endpoint devuelve todos los datos de la sede indicando su ID
+
+**POST /sede** <br>
+
+Este endpoint se utiliza para añadir una nueva sede a la base de datos(Se le debe pasar el json con la sede a crear)
+
+**PUT /sede/ID** <br>
+
+Este endpoint modifica los datos de la sede que se le ha indicado mediante el ID
+
+**DELETE /sede/ID** <br>
+
+Este endpoint borra la sede que se le ha indicado mediante el ID
+<br>
+
 
 ## CÓDIGO SQLITE PARA BASE DE DATOS
 
