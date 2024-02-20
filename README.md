@@ -15,7 +15,7 @@ Estamos creando una pagina web donde nuestros usuarios podrán registrarse y com
 
 ![Nuestra base de datos](https://github.com/DavidOrtizz/ProyectoConFlask/assets/116579416/c2dd320c-394f-45b6-ae19-fa564cc83701)
 
-**Ionut** <br>
+## **Ionut** <br>
 Ha realizado la creación de PEDIDO, con 5 endpoints, configuración de su front-end.<br>
 ## **ENDPOINTS PEDIDO** <br>
 **GET /pedidos** <br>
