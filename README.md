@@ -4,7 +4,8 @@
 
 ## Descripción del proyecto
 
-Estamos creando una pagina web donde nuestros usuarios podrán registrarse y comprar nuestros productos
+Para ejecutar el backend, debes ejecutar el archivo EndPoints.py. <br>
+Para ejecutar el frontend, debes ejecutar dentro de la carpeta FrontEndFlask, ng serve -o, si es la primera vez, debes hacer npm install primero.
 
 ## Autores
 
